@@ -115,7 +115,7 @@ extension Array where Element == UInt8 {
     
     
     
-    enum  xfield_type:Int {
+    enum  xfieldType:Int {
         case xfield_type_name = 516
         case xfield_type_size = 8200
         case xfield_type_document_id = 8707
@@ -128,7 +128,7 @@ extension Array where Element == UInt8 {
         //   Sparse_bytes
     }
     
-    enum item_type:Int{
+    enum itemType:Int{
         case item_type_named_pipe = 1
         case item_type_character_special = 2
         case item_type_directory = 4

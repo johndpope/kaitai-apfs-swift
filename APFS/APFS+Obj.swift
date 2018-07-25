@@ -43,13 +43,13 @@ class  RefObj:KaitaiStruct{
 }
 
 class  Obj :KaitaiStruct{
-    //BEGIN BOILERPLATE
+    
     var _io: KaitaiStream
     var _root: KaitaiStruct?
     var _parent: KaitaiStruct?
     var hdr:ObjHeader?
     var _on:objType?
-    var body:AnyObject?
+    var body:KaitaiStruct?
     init(_ _io:KaitaiStream,_ _parent:KaitaiStruct?,_ _root:KaitaiStruct?) {
         self._io = _io
         self._parent = _parent

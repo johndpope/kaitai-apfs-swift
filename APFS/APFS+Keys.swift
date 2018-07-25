@@ -1,6 +1,34 @@
 import Foundation
 import KaitaiStream
 
+//// node entry keys
+class  KeyHdr:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_ _io:KaitaiStream,_ _parent:KaitaiStruct?,_ _root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    
+    var obj_id:UInt? = 60
+    var kind_0:kind = .kind_xattr //<read=ReadKind>
+}
+
+
 
 
 class  EmptyKey:KaitaiStruct{

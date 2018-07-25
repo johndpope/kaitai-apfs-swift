@@ -32,7 +32,7 @@ public typealias ushort         = Swift.UInt16
         case obj_subtype_extents = 15
         case obj_subtype_unknown = 16
     }
-    enum treeType: uint64 {
+    enum treeType:Int  { //uint64
         case tree_type_om_tree = 0
         case tree_type_fs_tree = 1
     }

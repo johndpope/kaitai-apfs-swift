@@ -1,21 +1,5 @@
-// mash up of
-// https://github.com/cugu/afro/blob/master/afro/libapfs/apfs.ksy
-// https://github.com/cugu/afro/blob/master/afro/libapfs/apfs.py
-// AND THIS FILE
-// https://github.com/ydkhatri/APFS_010/blob/master/apfs.010.bt
-//
-// TODO
-//    CAMEL CASE
-//    INTEGRATE INTO https://github.com/kaitai-io/kaitai_class _swift_runtime/pull/2
-
 import Foundation
 import KaitaiStream
-
-public typealias byte          = Swift.Int8
-public typealias ubyte          = Swift.UInt8
-public typealias short         = Swift.Int16
-public typealias ushort         = Swift.UInt16
-
 
 
 //globals
@@ -24,14 +8,11 @@ let  block_Size:UInt? = 4096 //default, we set this to actual later
 let  follow_Pointer = true
 let  current_Block_Offset:UInt? = 0
 
-//BOILERPLATE - why not subclass ?? for v1 - desire parity with python class rather.
-
 
 //    """Universal type to address a block: it both parses one u8-sized
 //    block address and provides a lazy instance to parse that block
 //    right away.
 //    """
-
 class Apfs:KaitaiStruct{
     var _io: KaitaiStream
     var _root: KaitaiStruct?

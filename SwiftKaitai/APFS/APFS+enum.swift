@@ -9,6 +9,12 @@
 
 import Foundation
 
+public typealias byte          = Swift.Int8
+public typealias ubyte          = Swift.UInt8
+public typealias short         = Swift.Int16
+public typealias ushort         = Swift.UInt16
+
+
 
 
 //extension Apfs{

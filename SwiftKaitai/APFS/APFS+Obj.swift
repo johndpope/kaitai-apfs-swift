@@ -47,8 +47,9 @@ class  Obj :KaitaiStruct{
     var _io: KaitaiStream
     var _root: KaitaiStruct?
     var _parent: KaitaiStruct?
-    var hdr:obj_header?
-    
+    var hdr:ObjHeader?
+    var _on:objType?
+    var body:AnyObject?
     init(_ _io:KaitaiStream,_ _parent:KaitaiStruct?,_ _root:KaitaiStruct?) {
         self._io = _io
         self._parent = _parent
@@ -61,33 +62,33 @@ class  Obj :KaitaiStruct{
     }
     
     func _read(){
-        print("override")
-        //        self.hdr = self._root.ObjHeader(self._io, self, self._root)
-        //        _on = self.hdr.type
-        //        if let _on == self._root.ObjType.container_superblock{
-        //
-        //        }
-        //        self.body = self._root.ContainerSuperblock(self._io, self, self._root)
-        //        elif _on == self._root.ObjType.spaceman_internal_pool:
-        //        self.body = self._root.SpacemanInternalPool(self._io, self, self._root)
-        //        elif _on == self._root.ObjType.space_manager:
-        //        self.body = self._root.SpaceManager(self._io, self, self._root)
-        //        elif _on == self._root.ObjType.rootnode:
-        //        self.body = self._root.Node(self._io, self, self._root)
-        //        elif _on == self._root.ObjType.node:
-        //        self.body = self._root.Node(self._io, self, self._root)
-        //        elif _on == self._root.ObjType.checkpoint:
-        //        self.body = self._root.Checkpoint(self._io, self, self._root)
-        //        elif _on == self._root.ObjType.btree:
-        //        self.body = self._root.Btree(self._io, self, self._root)
-        //        elif _on == self._root.ObjType.volume_superblock:
-        //        self.body = self._root.VolumeSuperblock(self._io, self, self._root)
-        
+
+        self.hdr = ObjHeader(self._io, self, self._root)
+        _on = self.hdr?.type
+        switch _on!{
+        case .obj_type_container_superblock:
+            self.body = ContainerSuperblock(self._io, self, self._root)
+        case .obj_type_space_manager:
+            self.body = SpaceManager(self._io, self, self._root)
+        case .obj_type_rootnode:
+            self.body = Node(self._io, self, self._root)
+        case .obj_type_node:
+            self.body = Node(self._io, self, self._root)
+        case .obj_type_checkpoint:
+            self.body = Checkpoint(self._io, self, self._root)
+        case .obj_type_btree:
+            self.body = Btree(self._io, self, self._root)
+        case .obj_type_volume_superblock:
+            self.body = VolumeSuperblock(self._io, self, self._root)
+
+        default:
+            self.body = nil
+        }
     }
     
 }
 
-class  obj_header:KaitaiStruct {
+class  ObjHeader:KaitaiStruct {
     //BEGIN BOILERPLATE
     var _io: KaitaiStream
     var _root: KaitaiStruct?

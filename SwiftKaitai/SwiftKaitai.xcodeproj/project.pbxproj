@@ -11,6 +11,8 @@
 		1783AF5821076DFD002A73B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1783AF5721076DFD002A73B3 /* Assets.xcassets */; };
 		1783AF5B21076DFD002A73B3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1783AF5921076DFD002A73B3 /* MainMenu.xib */; };
 		1783AF6E21076E83002A73B3 /* APFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783AF6D21076E83002A73B3 /* APFS.swift */; };
+		1783AF7321078179002A73B3 /* APFS+enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783AF7221078179002A73B3 /* APFS+enum.swift */; };
+		1783AF772108CBF6002A73B3 /* APFS+primitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783AF762108CBF6002A73B3 /* APFS+primitives.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,8 @@
 		1783AF5D21076DFD002A73B3 /* SwiftKaitai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftKaitai.entitlements; sourceTree = "<group>"; };
 		1783AF6321076E08002A73B3 /* KaitaiStream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KaitaiStream.xcodeproj; path = ../../Documents/gitWorkspace/kaitai_struct_swift_runtime/KaitaiStream.xcodeproj; sourceTree = "<group>"; };
 		1783AF6D21076E83002A73B3 /* APFS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APFS.swift; sourceTree = "<group>"; };
+		1783AF7221078179002A73B3 /* APFS+enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APFS+enum.swift"; sourceTree = "<group>"; };
+		1783AF762108CBF6002A73B3 /* APFS+primitives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APFS+primitives.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				1783AF5521076DFB002A73B3 /* AppDelegate.swift */,
+				1783AF7221078179002A73B3 /* APFS+enum.swift */,
 				1783AF6D21076E83002A73B3 /* APFS.swift */,
+				1783AF762108CBF6002A73B3 /* APFS+primitives.swift */,
 				1783AF5721076DFD002A73B3 /* Assets.xcassets */,
 				1783AF5921076DFD002A73B3 /* MainMenu.xib */,
 				1783AF5C21076DFD002A73B3 /* Info.plist */,
@@ -177,6 +183,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1783AF7321078179002A73B3 /* APFS+enum.swift in Sources */,
+				1783AF772108CBF6002A73B3 /* APFS+primitives.swift in Sources */,
 				1783AF5621076DFB002A73B3 /* AppDelegate.swift in Sources */,
 				1783AF6E21076E83002A73B3 /* APFS.swift in Sources */,
 			);

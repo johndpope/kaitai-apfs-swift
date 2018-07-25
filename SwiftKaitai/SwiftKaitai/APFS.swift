@@ -6,7 +6,7 @@
 //
 // TODO
 //    CAMEL CASE
-//    INTEGRATE INTO https://github.com/kaitai-io/kaitai_struct_swift_runtime/pull/2
+//    INTEGRATE INTO https://github.com/kaitai-io/kaitai_class _swift_runtime/pull/2
 
 import Foundation
 import KaitaiStream
@@ -15,283 +15,264 @@ public typealias byte          = Swift.Int8
 public typealias ubyte          = Swift.UInt8
 public typealias short         = Swift.Int16
 public typealias ushort         = Swift.UInt16
-public typealias uint           = Swift.UInt32
-public typealias nitfield       = Swift.UInt32
-public typealias uint64         = Swift.UInt64
-public typealias uint64EXT      = Swift.UInt64
+
 
 
 //globals
-let  apfs_Offset:uint64 = 0 // <---- Set this to wherever your APFS container starts
-let  block_Size:uint = 4096 //default, we set this to actual later
+let  apfs_Offset:UInt? = 0 // <---- Set this to wherever your APFS container starts
+let  block_Size:UInt? = 4096 //default, we set this to actual later
 let  follow_Pointer = true
-let  current_Block_Offset:uint64 = 0
+let  current_Block_Offset:UInt? = 0
 
-//forward declarations
-//struct obj
-
-func SeekBlock(block_id:uint64)->Int{
-    return 0
-}
-
-// enums
-
-@objc public enum obj_type: Int {
-    case obj_type_container_superblock = 1
-    case obj_type_rootnode = 2
-    case obj_type_node = 3
-    case obj_type_space_manager = 5
-    case obj_type_spaceman_internal_pool = 7
-    case obj_type_btree = 11
-    case obj_type_checkpoint = 12
-    case obj_type_volume_superblock = 13
-    case obj_type_reaper = 17
-    case obj_type_18_unknown = 18
-    case obj_type_32_unknown = 32
-}
-
-@objc public enum obj_subtype: Int {
-    
-    case obj_subtype_empty = 0
-    case obj_subtype_history = 9
-    case obj_subtype_omap = 11
-    case obj_subtype_files = 14
-    case obj_subtype_extents = 15
-    case obj_subtype_unknown = 16
-}
-@objc public enum tree_type: uint64 {
-    case tree_type_om_tree = 0
-    case tree_type_fs_tree = 1
-}
-
-@objc public enum features:Int,CustomStringConvertible{
-    case features_case_insensitive = 1
-    case features_unknown_type4 = 4
-    case features_case_sensitive = 8
-    
-    public var description: String {
-        switch self {
-        case .features_case_insensitive:   return "case_insensitive"
-        case .features_unknown_type4:   return "unknown_type4"
-        case .features_case_sensitive:    return "case_sensitive"
-        }
-    }
-}
+//BOILERPLATE - why not subclass ?? for v1 - desire parity with python class rather.
 
 
-@objc public enum encryption_types:Int,CustomStringConvertible {
-    case enc_type_NotEncrypted = 1
-    case enc_type_unknown2 = 2
-    case enc_type_unknown4 = 4
-    case enc_type_unknown8 = 8
-    public var description: String {
-        switch self {
-        case .enc_type_NotEncrypted:   return "NotEncrypted"
-        case .enc_type_unknown2:   return "unknown_2"
-        case .enc_type_unknown4:    return "unknown_4"
-        case .enc_type_unknown8:    return "unknown_8"
-        }
-        
-    }
-}
+//    """Universal type to address a block: it both parses one u8-sized
+//    block address and provides a lazy instance to parse that block
+//    right away.
+//    """
 
-
-@objc public enum kind:uint,CustomStringConvertible{
-    case  kind_omap = 0x0
-    case  kind_lookup = 0x2
-    case  kind_inode = 0x3
-    case  kind_xattr = 0x4
-    case  kind_sibling = 0x5
-    case  kind_extent_refcount = 0x6
-    case  kind_extent = 0x8
-    case  kind_drec = 0x9
-    case  kind_sibling_map = 0xc
-    case  kind_unknown_d = 0xd
-    
-    public var description: String {
-        switch self {
-        case .kind_omap: return "kind_omap (0)"
-        case .kind_lookup: return "kind_lookup (2)"
-        case .kind_inode: return "kind_inode (3)"
-        case .kind_xattr: return "kind_xattr (4)"
-        case .kind_sibling: return "kind_sibling (5)"
-        case .kind_extent_refcount: return "kind_extent_refcount (6)"
-        case .kind_extent:  return "kind_extent (8)"
-        case .kind_drec: return "kind_drec (9)"
-        case .kind_sibling_map: return "kind_sibling_map (12)"
-        default: return "Unknown"
-        }
-        
-    }
-}
-
-
-
-@objc public enum  xfield_type:Int {
-    case xfield_type_name = 516
-    case xfield_type_size = 8200
-    case xfield_type_document_id = 8707
-    case xfield_type_device_node = 8718
-    case xfield_type_sparse_size = 10253
-    // Undiscoverd xfield_types,
-    //   Dstream
-    //   Dir_Stats_key
-    //   Uuid
-    //   Sparse_bytes
-}
-
-@objc public enum item_type:Int{
-    case item_type_named_pipe = 1
-    case item_type_character_special = 2
-    case item_type_directory = 4
-    case item_type_block_special = 6
-    case item_type_regular = 8
-    case item_type_symbolic_link = 10
-    case item_type_socket = 12
-    case item_type_whiteout = 14
-}
-
-@objc public enum ea_type:Int {
-    case  ea_type_generic = 2
-    case  ea_type_symlink = 6
-}
-
-
-
-struct Uuid {
-    func value()-> String{
-        /*BigEndian()
-         uint Data1 <format=hex>
-         ushort  Data2 <format=hex>
-         ushort  Data3 <format=hex>
-         ushort  Data4 <format=hex>
-         ubyte  Data5[6] <format=hex>
-         LittleEndian()*/
-    }
-    
-    
-    public var description: String {
-        switch self {
-            
-        default: return "Unknown"
-        }
-        
-    }
-} // <read=ReadUUID>
-
-//string ReadUUID (Uuid  & g){
-//    local string ret
-//    SPrintf(ret, "%08x-%04x-%04x-%04x-%02x%02x%02x%02x%02x%02x", g.Data1, g.Data2, g.Data3, g.Data4, g.Data5[0], g.Data5[1], g.Data5[2], g.Data5[3], g.Data5[4], g.Data5[5])
-//    return ret
-//}
-
-// reference obj
-// This structure is unused now as it has been inlined everywhere due to
-// limitation on the number of nested structures you can view in 010 gui.
-struct ref_obj:KaitaiStruct{
+class Apfs:KaitaiStruct{
     var _io: KaitaiStream
-    
     var _root: KaitaiStruct?
-    
     var _parent: KaitaiStruct?
+    var _raw_block0:obj?
     
-    //    local uint64 pos = FTell()
-    //    var val:uint64
-    //    if (val == 0)
-    //    Printf("\n%s\n", "val was 0 in obj_ref!! Not defining obj!!")
-    //    else if (SeekBlock(val) != 0)
-    //    Printf("\n%s\n", "val was invalid in obj_ref!! Not defining obj!!")
-    //    else
-    //    obj object
-    //
-    //    FSeek(pos + 8)
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        self._raw_block0 = self._io.readBytes(4096)
+        var io = KaitaiStream(data: (self._raw_block0)) //BytesIO(self._raw_block0)
+        self.block0 = self._root.Obj(io, self, self._root)
+    }
+    
+}
+class  ref_obj:KaitaiStruct{
+
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    var val:UInt?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        self.val = self._io.readU8le()
+    }
+    
+    func  target()->KaitaiStruct?{
+        //if hasattr(self, '_m_target'):
+//        //return self._m_target if hasattr(self, '_m_target') else None
+//
+//        io = self._root._io
+//        _pos = io.pos()
+//        io.seek((self.val * self._root.block_size))
+//        self._raw__m_target = io.read_bytes(self._root.block_size)
+//        io = KaitaiStream(BytesIO(self._raw__m_target))
+//        self._m_target = self._root.Obj(io, self, self._root)
+//        io.seek(_pos)
+//        return self._m_target if hasattr(self, '_m_target') else None
+        return nil
+    }
+
 }
 
 // container_superblock (type: 0x01)
-struct container_superblock:KaitaiStruct{
+class  container_superblock:KaitaiStruct{
+    //BEGIN BOILERPLATE
     var _io: KaitaiStream
-    
     var _root: KaitaiStruct?
-    
     var _parent: KaitaiStruct?
+    var pos:UInt?
+    var magic:String? // NXSB
+    var block_size:UInt?
+    var block_count:UInt?
+    var features_0:UInt?
+    var read_only_compatible_features:UInt?
+    var incompatible_features:UInt?
+    var uuid:String?
+    var next_oid:UInt?
+    var next_xid:UInt?
+    var xp_desc_blocks:UInt?
+    var xp_data_blocks:UInt?
+    var xp_desc_base:UInt?
+    var xp_data_base:UInt?
+    var xp_desc_len:UInt?
+    var xp_data_len:UInt?
+    var xp_desc_index:UInt?
+    var xp_desc_index_len:UInt?
+    var xp_data_index:UInt?
+    var xp_data_index_len:UInt?
+    var spaceman_oid:UInt?
     
-    var  pos:uint64
-    var magic:[String] // NXSB
-    var   block_size:uint
-    var  block_count:uint64
-    var   features_0:uint64
-    var   read_only_compatible_features:uint64
-    var   incompatible_features:uint64
-    var     uuid:Uuid
-    var   next_oid:uint64
-    var   next_xid:uint64
-    var     xp_desc_blocks:uint
-    var     xp_data_blocks:uint
-    var   xp_desc_base:uint64
-    var   xp_data_base:uint64
-    var     xp_desc_len:uint
-    var     xp_data_len:uint
-    var     xp_desc_index:uint
-    var     xp_desc_index_len:uint
-    var     xp_data_index:uint
-    var      xp_data_index_len:uint
-    var   spaceman_oid:uint64
-    //ref_obj omap_oid //inlined
-    //// BEGIN ref_obj
-    /* local uint64 rpos = FTell()
-     uint64 omap_oid
-     if (omap_oid == 0)
-     Printf("\n%s\n", "omap_oid was 0 in obj_ref!! Not defining omap!!")
-     else if (SeekBlock(omap_oid) != 0)
-     Printf("\n%s\n", "omap_oid was invalid in obj_ref!! Not defining omap!!")
-     else
-     obj omap
-     FSeek(rpos + 8)
-     //// END ref_obj
-     */
-    //    var  reaper_oid:uint64
-    //    var   pad2:uint
-    //    var   max_file_systems:uint
-    //    var fs_oids[max_file_systems]
-    //    if (max_file_systems < 100)
-    //    uint64 padding[100 - max_file_systems]
-    //    uint64 unknown_version <format=hex> // seems to be incremental, block0 has highest number
-    //    uint64 unknowns[0x26]      // only for encrypted
-    //    var keybag_block_start:uint64  // only for encrypted
-    //    var keybag_block_count:uint64  // only for encrypted
-    //    var unknown_0x520:uint64       // only for encrypted
-    //    local uint pos_end = FTell()
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
     
-    // checkpoint
-    //    SeekBlock(xp_desc_base + xp_desc_index)
-    //    obj checkpoint
-    //
-    //    // spaceman
-    //    SeekBlock(xp_data_base + xp_data_index)
-    //    obj spaceman
-    //    FSeek(pos_end)
+    func _read(){
+       
+//        self.magic = self._io.ensureFixedContents("x4E\x58\x53\x42")
+//        self.block_size = self._io.read_u4le()
+//        self.block_count = self._io.read_u8le()
+//        self.features = self._io.read_u8le()
+//        self.read_only_compatible_features = self._io.read_u8le()
+//        self.incompatible_features = self._io.read_u8le()
+//        self.uuid = self._io.read_bytes(16)
+//        self.next_oid = self._io.read_u8le()
+//        self.next_xid = self._io.read_u8le()
+//        self.xp_desc_blocks = self._io.read_u4le()
+//        self.xp_data_blocks = self._io.read_u4le()
+//        self.xp_desc_base = self._io.read_u8le()
+//        self.xp_data_base = self._io.read_u8le()
+//        self.xp_desc_len = self._io.read_u4le()
+//        self.xp_data_len = self._io.read_u4le()
+//        self.xp_desc_index = self._io.read_u4le()
+//        self.xp_desc_index_len = self._io.read_u4le()
+//        self.xp_data_index = self._io.read_u4le()
+//        self.xp_data_index_len = self._io.read_u4le()
+//        self.spaceman_oid = self._io.read_u8le()
+//        self.omap_oid = self._root.RefObj(self._io, self, self._root)
+//        self.reaper_oid = self._io.read_u8le()
+//        self.pad2 = self._io.read_u4le()
+//        self.max_file_systems = self._io.read_u4le()
+//        self.fs_oids = [None] * (self.max_file_systems)
+//        for i in range(self.max_file_systems):
+//        self.fs_oids[i] = self._io.read_u8le()
+    }
+    // END
+
+    
 }
 
 
 //// node entry keys
-struct key_hdr{
-    var obj_id:uint64 = 60
-    var kind_0:uint64 = 04 //<read=ReadKind>
+class  key_hdr:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    var obj_id:UInt? = 60
+    var kind_0:UInt? = 04 //<read=ReadKind>
 }
 
-struct empty_key{
+class  empty_key:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
 }
 
-struct omap_key{
-    var xid:uint64
+class  omap_key:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    var xid:UInt?
 }
 
-struct history_key{
-    var  xid:uint64
+class  history_key:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    var  xid:UInt?
     //ref_obj obj_id //inlined
     //// BEGIN ref_obj
     //    local uint64 rpos = FTell()
-    //    var oid:uint64
+    //    var oid:UInt?
     //    if (oid == 0)
     //    Printf("\n%s\n", "oid was 0 in obj_ref!! Not defining history_object!!")
     //    else if (SeekBlock(oid) != 0)
@@ -302,107 +283,329 @@ struct history_key{
     //    //// END ref_obj
 }
 
-struct lookup_key{
+class  lookup_key:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
     //ref_obj offset
-    var offset_ref_obj:uint64 = 60 // seen
-    var kind_1:uint64  = 04
+    var offset_ref_obj:UInt? = 60 // seen
+    var kind_1:UInt?  = 04
 }
 
-struct drec_key{
-    var name_length:ubyte
-    var  hash:[byte]
-    var  name:String //[ name_length ]
+class  drec_key:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    var name_length:ubyte?
+    var  hash:[byte]?
+    var  name:String? //[ name_length ]
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+        self.name_length = self._io.readU1()
+//        self.flag_1 = self._io.readU1()
+//        self.unknown_2 = self._io.readU2le()
+//        self.name = (KaitaiStream.bytes_terminate(self._io.readBytes(self.name_length), 0, false))
+    }
+
+
+
 }//  <read=ReadDrec_Key>
 
 //string ReadDrec_Key(drec_key & d) {
 //    return d.name
 //}
 
-struct xattr_key {
-    var  name_length:ushort
-    var    name:String //[ name_length ]
-}  //<read=ReadXattr_Key>
+class  xattr_key:KaitaiStruct {
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    var  name_length:ushort?
+    var    name:String
 
 //string ReadXattr_Key(xattr_key & d) {
 //    return d.name
 //}
 
-struct sibling_key{
-    var object:uint64
+class  sibling_key:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    var object:UInt?
 }
 
-struct extent_key{
-    var offset:uint64 // seek pos in file
+class  extent_key:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    var offset:UInt? // seek pos in file
 }
 
 //// node entry vals
 
-struct pointer_val{ // for any index nodes
-    //    if (Follow_Pointer) {
-    //        //ref_obj val //inlined
-    //        //// BEGIN ref_obj
-    //        local uint64 rpos = FTell()
-    //        uint64 val
-    //        if (val == 0)
-    //        Printf("\n%s\n", "val was 0 in obj_ref!! Not defining obj!!")
-    //        else if (SeekBlock(val) != 0)
-    //        Printf("\n%s\n", "val was invalid in obj_ref!! Not defining obj!!")
-    //        else
-    //        obj object
-    //        FSeek(rpos + 8)
-    //        //// END ref_obj
-    //    }
-    //    else
-    //    uint64 pointer
-}
-
-struct history_val{ // ???
-    var unknown_0:uint
-    var unknown_4:uint
-}
-
-struct omap_val{  // 0x00
-    var flags:uint
-    var size:uint
-    //ref_obj paddr //inlined
-    //// BEGIN ref_obj
-    /*var  rpos:uint64 = FTell()
-     uint64 paddr
-     if (paddr == 0)
-     Printf("\n%s\n", "paddr was 0 in obj_ref!! Not defining omap!!")
-     else if (SeekBlock(paddr) != 0) // outside disk image!
-     Printf("\n%s\n", "paddr invalid in obj_ref!! Not defining omap!!")
-     else
-     obj omap
-     FSeek(rpos + 8)
-     //// END ref_obj*/
-}
-
-struct xf_header:KaitaiStruct {
+class  pointer_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
     var _io: KaitaiStream
-    
     var _root: KaitaiStruct?
-    
     var _parent: KaitaiStruct?
     
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+}
+
+class  history_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    var unknown_0:UInt?
+    var unknown_4:UInt?
+}
+
+class  omap_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
+    // 0x00
+    var flags:UInt?
+    var size:UInt?
+
+}
+
+class  xf_header:KaitaiStruct {
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
     var type:xfield_type
     var  length:ushort
 }
 
-struct xf_name{
+class  xf_name:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+
     var name:String
 }
 
-struct xf_size{
-    var  size:uint64
-    var stored_size:uint64
-    var unknown_16:uint64
-    var unknown_size:uint64 // could be compressed size
-    var unknown_32:uint64
+class  xf_size:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    var  size:UInt?
+    var stored_size:UInt?
+    var unknown_16:UInt?
+    var unknown_size:UInt? // could be compressed size
+    var unknown_32:UInt?
 }
 
-struct xf_device_node{
-    var major_minor:uint  // Works around lack of a u3 type
+class  xf_device_node:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    var major_minor:UInt?  // Works around lack of a u3 type
 }
 
 //uint get_xf_device_node_major(xf_device_node & xdn) {
@@ -413,36 +616,97 @@ struct xf_device_node{
 //    return xdn.major_minor & 0xFFFFFF
 //}
 
-struct xf_sparse_size {
-    var size:uint64
+class  xf_sparse_size :KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    var size:UInt?
 }
 
-struct xf_document_id {
-    var id:uint
+class  xf_document_id :KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    var id:UInt?
 }
 
-struct inode_val{  // 0x30
-    var parent_id:uint64
-    var extents_id:uint64
-    var  creation_timestamp:uint64 //<read=ApfsTimeRead>
-    var  modified_timestamp:uint64 //<read=ApfsTimeRead>
-    var  changed_timestamp:uint64 // <read=ApfsTimeRead>
-    var  accessed_timestamp:uint64// <read=ApfsTimeRead>
-    var  flags:uint64
-    var  nchildren_or_nlink:uint
-    var    unknown_60:uint
-    var    unknown_64:uint
-    var    bsdflags:uint
-    var    owner_id:uint
-    var    group_id:uint
+class  inode_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0x30
+    var parent_id:UInt?
+    var extents_id:UInt?
+    var  creation_timestamp:UInt? //<read=ApfsTimeRead>
+    var  modified_timestamp:UInt? //<read=ApfsTimeRead>
+    var  changed_timestamp:UInt? // <read=ApfsTimeRead>
+    var  accessed_timestamp:UInt?// <read=ApfsTimeRead>
+    var  flags:UInt?
+    var  nchildren_or_nlink:UInt?
+    var    unknown_60:UInt?
+    var    unknown_64:UInt?
+    var    bsdflags:UInt?
+    var    owner_id:UInt?
+    var    group_id:UInt?
     var  mode:ushort// <format=octal>
     var  unknown_82:ushort
-    var    unknown_84:uint
-    var    unknown_88:uint
+    var    unknown_84:UInt?
+    var    unknown_88:UInt?
     var  xf_num_exts:ushort // File 0x02 or Folder 0x01 cmp. TN1150
     var  xf_used_data:ushort
     var  xf_hdr:[xf_header]
-    var   local_index:uint = 0
+    var   local_index:UInt? = 0
     //    for (_index =0 _index < xf_num_exts _index++) {
     //        switch (xf_hdr[_index].type) {
     //        case xfield_type_name: xf_name x_name break
@@ -460,41 +724,188 @@ struct inode_val{  // 0x30
     //    }
 }
 
-struct sibling_val{   // 0x50
-    var node_id:uint64
+class  sibling_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0x50
+    var node_id:UInt?
     var length:ushort
     var  name:String //char [length]
 }
 
-struct extent_refcount_val{ // 0x60
-    var count:uint
+class  extent_refcount_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0x60
+    var count:UInt?
 }
 
-struct lookup_val{ // 0x20
-    var   block_count:uint
+class  lookup_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0x20
+    var   block_count:UInt?
     var unknown_4:ushort
     var block_size:ushort
-    var inode:uint64
-    var   unknown_16:uint
+    var inode:UInt?
+    var   unknown_16:UInt?
 }
 
-struct extent_val{ // 0x80
-    var  len:uint64
-    var phys_block_num:uint64 //error in ksy  spec, this is NOT ref_obj
-    var  flags:uint64
+class  extent_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0x80
+    var  len:UInt?
+    var phys_block_num:UInt? //error in ksy  spec, this is NOT ref_obj
+    var  flags:UInt?
 }
 
-struct drec_val{ // 0x90
-    var node_id:uint64
-    var timestamp:uint64// <read=ApfsTimeRead>
+class  drec_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0x90
+    var node_id:UInt?
+    var timestamp:UInt?// <read=ApfsTimeRead>
     var type_item:item_type
 }
 
-struct sibling_map_val{  // 0xc0
-    var map_node_id:uint64
+class  sibling_map_val:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0xc0
+    var map_node_id:UInt?
 }
 
-struct xattr_val {   // 0x40 xattr_val
+class  xattr_val :KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // 0x40 xattr_val
     var type:ea_type
     var  data_length:ushort
     //    switch (type) {
@@ -508,13 +919,27 @@ struct xattr_val {   // 0x40 xattr_val
 }
 
 //// node entries
-struct node_entry:KaitaiStruct{
+class  node_entry:KaitaiStruct{
+    //BEGIN BOILERPLATE
     var _io: KaitaiStream
-    
     var _root: KaitaiStruct?
-    
     var _parent: KaitaiStruct?
     
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
     //    local uint64 pos = FTell()
     var  key_offset:short
    // if ((parentof(this).node_type & 4) == 0)
@@ -587,36 +1012,76 @@ struct node_entry:KaitaiStruct{
 }
 
 // node (type: 0x02)
-struct node{
+class  node:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
     var node_type:ushort
     var level:ushort // Zero for leaf nodes, > 0 for index nodes
-    var   entry_count:uint
+    var   entry_count:UInt?
     var unknown_40:ushort
     var keys_offset:ushort
     var keys_length:ushort
     var data_offset:ushort
-    var unknown_48:uint64// <format=hex>
+    var unknown_48:UInt?// <format=hex>
     //    if (entry_count)
     var entries:[node_entry] //<optimize=false>
 }
 
 // space_manager (type: 0x05)
-struct space_manager {
+class  space_manager:KaitaiStruct {
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
     // uint64 pos = FTell()
-    var   block_size:uint
-    var   blocks_per_chunk:uint
-    var   chunks_per_cib:uint
-    var      cibs_per_cab:uint
-    var      block_count:uint
-    var      chunk_count:uint
-    var      cib_count:uint
-    var      cab_count:uint
-    var      entry_count:uint
-    var      unknown_68:uint
-    var    free_block_count:uint64
-    var      entries_offset:uint
+    var   block_size:UInt?
+    var   blocks_per_chunk:UInt?
+    var   chunks_per_cib:UInt?
+    var      cibs_per_cab:UInt?
+    var      block_count:UInt?
+    var      chunk_count:UInt?
+    var      cib_count:UInt?
+    var      cab_count:UInt?
+    var      entry_count:UInt?
+    var      unknown_68:UInt?
+    var    free_block_count:UInt?
+    var      entries_offset:UInt?
     var      unknown_84:byte //= [92]
-    var    prev_spaceman_internal_pool_block:uint64
+    var    prev_spaceman_internal_pool_block:UInt?
     /*SeekBlock(prev_spaceman_internal_pool_block)
      obj    prev_spaceman
      if (entry_count) {
@@ -631,20 +1096,33 @@ struct space_manager {
      }
      }
      else
-     FSeek(pos + 152) //prevent error about struct end offset < start*/
+     FSeek(pos + 152) //prevent error about class  end offset < start*/
 }
 
 class spaceman_internal_pool_entry:KaitaiStruct{
+    //BEGIN BOILERPLATE
     var _io: KaitaiStream
     var _root: KaitaiStruct?
     var _parent: KaitaiStruct?
+    var xid:UInt?
+    var num_preceeding_blocks:UInt? // number ofs blocks before this one
+    var block_count:UInt?
+    var free_block_count:UInt?
+    var bitmap_block:UInt?
+    var unknown_8:UInt?
+    var unknown_12:UInt?
     
-    var xid:uint64 = 0
-    var num_preceeding_blocks:uint64 = 0 // number ofs blocks before this one
-    var block_count:uint = 0
-    var free_block_count:uint = 0
-    var bitmap_block:uint64 = 0
-    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+
     func _read(){
         xid = _io.readU8le()
         unknown_8 = _io.readU4le()
@@ -657,17 +1135,59 @@ class spaceman_internal_pool_entry:KaitaiStruct{
 }
 
 // spaceman internal pool (type: 0x07)
-struct spaceman_internal_pool{
-    var unknown_32:uint
-    var entry_count:uint
+class  spaceman_internal_pool:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    
+    var unknown_32:UInt?
+    var entry_count:UInt?
     //    if (entry_count)
     var  entries:[spaceman_internal_pool_entry] //<optimize=false>
 }
 
 // btree (type: 0x0b)
-struct btree{
+class  btree:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    
     var btree_type:tree_type
-    var    unknown_0:uint64// <format=hex>
+    var    unknown_0:UInt?// <format=hex>
     //ref_obj   root //inlined
     //// BEGIN ref_obj
     /*local uint64 rpos = FTell()
@@ -682,15 +1202,36 @@ struct btree{
      //// END ref_obj*/
 }
 
-struct checkpoint_entry{
-    var type:obj_type
+class  checkpoint_entry:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    
+    var type:objType
     var   flags:ushort
-    var     subtype:uint // enum: obj_subtype
-    var     size:uint
-    var     unknown_52:uint
-    var     unknown_56:uint
-    var     unknown_60:uint
-    var   oid:uint64
+    var     subtype:UInt? // enum: obj_subtype
+    var     size:UInt?
+    var     unknown_52:UInt?
+    var     unknown_56:UInt?
+    var     unknown_60:UInt?
+    var   oid:UInt?
     //ref_obj  object //inlined
     //// BEGIN ref_obj
     /* local uint64 rpos = FTell()
@@ -706,20 +1247,83 @@ struct checkpoint_entry{
 }
 
 // checkpoint (type: 0x0c)
-struct checkpoint{
-    var   unknown_0:uint//  <format=hex>
-    var    entry_count:uint
+class  checkpoint:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    
+    var   unknown_0:UInt?//  <format=hex>
+    var    entry_count:UInt?
     //    if (entry_count)
     var entries:[checkpoint_entry]// <optimize=false>
 }
 
-struct volume_access_info{
+class  volume_access_info:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    
     var   id:String //char [32]
-    var timestamp:uint64// <read=ApfsTimeRead>
-    var last_xid:uint64
+    var timestamp:UInt?// <read=ApfsTimeRead>
+    var last_xid:UInt?
 }
 // volume_superblock (type: 0x0d)
-struct volume_superblock{  // missing: next_obj_id, fs_flags, unmount_time
+class  volume_superblock:KaitaiStruct{
+    //BEGIN BOILERPLATE
+    var _io: KaitaiStream
+    var _root: KaitaiStruct?
+    var _parent: KaitaiStruct?
+    
+    init(_io:KaitaiStream,_parent:KaitaiStruct?,_root:KaitaiStruct?) {
+        self._io = _io
+        self._parent = _parent
+        if  _root != nil{
+            self._root = _root
+        }else{
+            self._root = self
+        }
+        self._read()
+    }
+    
+    func _read(){
+        print("override")
+    }
+    // END
+    // missing: next_obj_id, fs_flags, unmount_time
     /*char   magic[4] // APSB
      uint   fs_index
      byte   unknown_40[16]
@@ -783,91 +1387,12 @@ struct volume_superblock{  // missing: next_obj_id, fs_flags, unmount_time
      char   volname[]*/
 }
 
+//
+//class  reaper:KaitaiStruct{
+//    var unknown0:UInt?
+//    var unknown8:UInt?
+//    var unknowns:UInt?6 = [10]
+//}
 
-struct reaper{
-    var unknown0:uint64
-    var unknown8:uint64
-    var unknowns:uint6 = [10]
-}
 
-struct obj_header { //<size=32>
-    var cksum:uint64 // Flechters checksum, according to the docs.
-    var oid:uint64   // ID of the obj itself. Either the position of the obj or an incrementing number starting at 1024.
-    var xid:uint64   // Incrementing version number of the xid of the obj (highest == latest)
-    var type:obj_type
-    var  flags:ushort// <format=hex> // 0x4000 oid = position, 0x8000 = container
-    var subtype:obj_subtype // enum: obj_subtype
-    var pad:ushort
-}
 
-struct obj { //<size=GetObjSize>
-    //    local uint64 obj_start_off = FTell()
-    //Printf("\n Obj @ %LX", obj_start_off)
-    var hdr:obj_header
-    switch  hdr.type
-    {
-    case obj_type_container_superblock: container_superblock body break
-    case obj_type_rootnode: node body break
-    case obj_type_node: node body break
-    case obj_type_space_manager: space_manager body break
-    case obj_type_spaceman_internal_pool: spaceman_internal_pool body break
-    case obj_type_btree: btree body break
-    case obj_type_checkpoint: checkpoint body break
-    case obj_type_volume_superblock: volume_superblock body break
-    case obj_type_reaper: reaper rp_body break
-    case obj_type_18_unknown: Printf("\nType 18 obj header type 0x%X @ 0x%LX", hdr.type, obj_start_off) break
-    case obj_type_32_unknown: Printf("\nType 32 obj header type 0x%X @ 0x%LX", hdr.type, obj_start_off) break
-    default: Printf("\nUnknown obj header type 0x%X @ 0x%LX", hdr.type, obj_start_off) /*Exit(3)*/ break
-    }
-}
-
-//int GetObjSize(obj & o) {
-//    return Block_Size
-//}
-//
-//int SeekBlock(uint64 block_id) {
-//    Current_Block_Offset = Apfs_Offset + (block_id * Block_Size)
-//    return FSeek(Current_Block_Offset)
-//}
-//
-//uint CheckApfsAndSetBlockSize() {
-//    local uint64 pos = FTell()
-//    FSkip(32)
-//    if (ReadUInt() == 0x4253584E) { // NXSB
-//        FSkip(4)
-//        Block_Size = ReadUInt()
-//        FSeek(pos)
-//        return true
-//    }
-//    FSeek(pos)
-//    return false
-//}
-//
-//void BookmarkVolumes(obj & csb) {
-//    local uint i
-//    local string vol_name = ""
-//    for (i=0 i < csb.body.omap.body.root.body.entry_count ++i) {
-//        vol_name = csb.body.omap.body.root.body.entries[i].val.omap.body.volname
-//        Printf("\nVol name = %s", vol_name)
-//        SeekBlock(csb.body.omap.body.root.body.entries[i].val.paddr)
-//        obj vol <comment=GetVolName>
-//    }
-//}
-//
-//string GetVolName(obj & vsb) {
-//    local string ret = vsb.body.volname
-//    if ((vsb.body.encryption_flags & 1) != 1)
-//    ret += " <ENCRYPTED volume>"
-//    return ret
-//}
-//
-////MAIN
-//FSeek(Apfs_Offset)
-//
-//if (!CheckApfsAndSetBlockSize()) {
-//    Printf("\nError, starting point not an APFS container superblock. Set the 'Apfs_Offset' variable to correct value!")
-//    Exit(1)
-//}
-//
-//obj csb//container super block
-//BookmarkVolumes(csb)

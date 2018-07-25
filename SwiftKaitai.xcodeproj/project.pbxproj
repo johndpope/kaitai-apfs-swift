@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17830C532108E20A00EDEF50 /* APFS+Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C4B2108E20A00EDEF50 /* APFS+Volume.swift */; };
+		17830C542108E20A00EDEF50 /* APFS+Obj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C4C2108E20A00EDEF50 /* APFS+Obj.swift */; };
+		17830C552108E20A00EDEF50 /* APFS+SpaceMan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C4D2108E20A00EDEF50 /* APFS+SpaceMan.swift */; };
+		17830C562108E20A00EDEF50 /* APFS+XF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C4E2108E20A00EDEF50 /* APFS+XF.swift */; };
+		17830C572108E20A00EDEF50 /* APFS+enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C4F2108E20A00EDEF50 /* APFS+enum.swift */; };
+		17830C582108E20A00EDEF50 /* APFS+Vals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C502108E20A00EDEF50 /* APFS+Vals.swift */; };
+		17830C592108E20A00EDEF50 /* APFS+Checkpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C512108E20A00EDEF50 /* APFS+Checkpoint.swift */; };
+		17830C5A2108E20A00EDEF50 /* APFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C522108E20A00EDEF50 /* APFS.swift */; };
+		17830C5C2108E41600EDEF50 /* APFS+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17830C5B2108E41500EDEF50 /* APFS+Keys.swift */; };
+		1783AF5621076DFB002A73B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1783AF5521076DFB002A73B3 /* AppDelegate.swift */; };
+		1783AF5821076DFD002A73B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1783AF5721076DFD002A73B3 /* Assets.xcassets */; };
+		1783AF5B21076DFD002A73B3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1783AF5921076DFD002A73B3 /* MainMenu.xib */; };
+		179A485D2108E1C4008ED245 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179A485C2108E1C4008ED245 /* Extensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1783AF6721076E08002A73B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1783AF6321076E08002A73B3 /* KaitaiStream.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 004838561CCA633900B7D738;
+			remoteInfo = KaitaiStream;
+		};
+		1783AF6A21076E1A002A73B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1783AF6321076E08002A73B3 /* KaitaiStream.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 004838551CCA633900B7D738;
+			remoteInfo = KaitaiStream;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		17830C4B2108E20A00EDEF50 /* APFS+Volume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+Volume.swift"; sourceTree = "<group>"; };
+		17830C4C2108E20A00EDEF50 /* APFS+Obj.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+Obj.swift"; sourceTree = "<group>"; };
+		17830C4D2108E20A00EDEF50 /* APFS+SpaceMan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+SpaceMan.swift"; sourceTree = "<group>"; };
+		17830C4E2108E20A00EDEF50 /* APFS+XF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+XF.swift"; sourceTree = "<group>"; };
+		17830C4F2108E20A00EDEF50 /* APFS+enum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+enum.swift"; sourceTree = "<group>"; };
+		17830C502108E20A00EDEF50 /* APFS+Vals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+Vals.swift"; sourceTree = "<group>"; };
+		17830C512108E20A00EDEF50 /* APFS+Checkpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+Checkpoint.swift"; sourceTree = "<group>"; };
+		17830C522108E20A00EDEF50 /* APFS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APFS.swift; sourceTree = "<group>"; };
+		17830C5B2108E41500EDEF50 /* APFS+Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APFS+Keys.swift"; sourceTree = "<group>"; };
+		1783AF5221076DFB002A73B3 /* SwiftKaitai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftKaitai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1783AF5521076DFB002A73B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1783AF5721076DFD002A73B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1783AF5A21076DFD002A73B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1783AF5C21076DFD002A73B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1783AF5D21076DFD002A73B3 /* SwiftKaitai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftKaitai.entitlements; sourceTree = "<group>"; };
+		1783AF6321076E08002A73B3 /* KaitaiStream.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KaitaiStream.xcodeproj; path = ../../Documents/gitWorkspace/kaitai_struct_swift_runtime/KaitaiStream.xcodeproj; sourceTree = "<group>"; };
+		179A485C2108E1C4008ED245 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1783AF4F21076DFB002A73B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17830C4A2108E20A00EDEF50 /* APFS */ = {
+			isa = PBXGroup;
+			children = (
+				17830C522108E20A00EDEF50 /* APFS.swift */,
+				17830C512108E20A00EDEF50 /* APFS+Checkpoint.swift */,
+				17830C4F2108E20A00EDEF50 /* APFS+enum.swift */,
+				17830C5B2108E41500EDEF50 /* APFS+Keys.swift */,
+				17830C4C2108E20A00EDEF50 /* APFS+Obj.swift */,
+				17830C4D2108E20A00EDEF50 /* APFS+SpaceMan.swift */,
+				17830C502108E20A00EDEF50 /* APFS+Vals.swift */,
+				17830C4B2108E20A00EDEF50 /* APFS+Volume.swift */,
+				17830C4E2108E20A00EDEF50 /* APFS+XF.swift */,
+			);
+			path = APFS;
+			sourceTree = "<group>";
+		};
+		1783AF4921076DFB002A73B3 = {
+			isa = PBXGroup;
+			children = (
+				1783AF6321076E08002A73B3 /* KaitaiStream.xcodeproj */,
+				1783AF5421076DFB002A73B3 /* SwiftKaitai */,
+				1783AF5321076DFB002A73B3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1783AF5321076DFB002A73B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1783AF5221076DFB002A73B3 /* SwiftKaitai.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1783AF5421076DFB002A73B3 /* SwiftKaitai */ = {
+			isa = PBXGroup;
+			children = (
+				17830C4A2108E20A00EDEF50 /* APFS */,
+				1783AF5521076DFB002A73B3 /* AppDelegate.swift */,
+				179A485C2108E1C4008ED245 /* Extensions.swift */,
+				1783AF5721076DFD002A73B3 /* Assets.xcassets */,
+				1783AF5921076DFD002A73B3 /* MainMenu.xib */,
+				1783AF5C21076DFD002A73B3 /* Info.plist */,
+				1783AF5D21076DFD002A73B3 /* SwiftKaitai.entitlements */,
+			);
+			path = SwiftKaitai;
+			sourceTree = "<group>";
+		};
+		1783AF6421076E08002A73B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1783AF6821076E08002A73B3 /* KaitaiStream.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1783AF5121076DFB002A73B3 /* SwiftKaitai */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1783AF6021076DFD002A73B3 /* Build configuration list for PBXNativeTarget "SwiftKaitai" */;
+			buildPhases = (
+				1783AF4E21076DFB002A73B3 /* Sources */,
+				1783AF4F21076DFB002A73B3 /* Frameworks */,
+				1783AF5021076DFB002A73B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1783AF6B21076E1A002A73B3 /* PBXTargetDependency */,
+			);
+			name = SwiftKaitai;
+			productName = SwiftKaitai;
+			productReference = 1783AF5221076DFB002A73B3 /* SwiftKaitai.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1783AF4A21076DFB002A73B3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = UXKit;
+				TargetAttributes = {
+					1783AF5121076DFB002A73B3 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 1783AF4D21076DFB002A73B3 /* Build configuration list for PBXProject "SwiftKaitai" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1783AF4921076DFB002A73B3;
+			productRefGroup = 1783AF5321076DFB002A73B3 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1783AF6421076E08002A73B3 /* Products */;
+					ProjectRef = 1783AF6321076E08002A73B3 /* KaitaiStream.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1783AF5121076DFB002A73B3 /* SwiftKaitai */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		1783AF6821076E08002A73B3 /* KaitaiStream.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KaitaiStream.framework;
+			remoteRef = 1783AF6721076E08002A73B3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1783AF5021076DFB002A73B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1783AF5821076DFD002A73B3 /* Assets.xcassets in Resources */,
+				1783AF5B21076DFD002A73B3 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1783AF4E21076DFB002A73B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17830C572108E20A00EDEF50 /* APFS+enum.swift in Sources */,
+				17830C592108E20A00EDEF50 /* APFS+Checkpoint.swift in Sources */,
+				17830C582108E20A00EDEF50 /* APFS+Vals.swift in Sources */,
+				17830C5A2108E20A00EDEF50 /* APFS.swift in Sources */,
+				17830C542108E20A00EDEF50 /* APFS+Obj.swift in Sources */,
+				179A485D2108E1C4008ED245 /* Extensions.swift in Sources */,
+				1783AF5621076DFB002A73B3 /* AppDelegate.swift in Sources */,
+				17830C562108E20A00EDEF50 /* APFS+XF.swift in Sources */,
+				17830C532108E20A00EDEF50 /* APFS+Volume.swift in Sources */,
+				17830C552108E20A00EDEF50 /* APFS+SpaceMan.swift in Sources */,
+				17830C5C2108E41600EDEF50 /* APFS+Keys.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1783AF6B21076E1A002A73B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KaitaiStream;
+			targetProxy = 1783AF6A21076E1A002A73B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1783AF5921076DFD002A73B3 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1783AF5A21076DFD002A73B3 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1783AF5E21076DFD002A73B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1783AF5F21076DFD002A73B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		1783AF6121076DFD002A73B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwiftKaitai/SwiftKaitai.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftKaitai/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = BG.SwiftKaitai;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		1783AF6221076DFD002A73B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SwiftKaitai/SwiftKaitai.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = SwiftKaitai/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = BG.SwiftKaitai;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1783AF4D21076DFB002A73B3 /* Build configuration list for PBXProject "SwiftKaitai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1783AF5E21076DFD002A73B3 /* Debug */,
+				1783AF5F21076DFD002A73B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1783AF6021076DFD002A73B3 /* Build configuration list for PBXNativeTarget "SwiftKaitai" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1783AF6121076DFD002A73B3 /* Debug */,
+				1783AF6221076DFD002A73B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1783AF4A21076DFB002A73B3 /* Project object */;
+}
